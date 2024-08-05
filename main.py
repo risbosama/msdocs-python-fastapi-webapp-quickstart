@@ -11,7 +11,7 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
-    print('Request for index page received')
+    print('Request for index page received - risbosama')
     return templates.TemplateResponse('index.html', {"request": request})
 
 @app.get('/favicon.ico')
