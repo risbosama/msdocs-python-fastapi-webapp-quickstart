@@ -1,8 +1,9 @@
-from fastapi import FastAPI, Form, Request, status
+from fastapi import FastAPI, Form, Query, Request, status
 from fastapi.responses import HTMLResponse, FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
+import re
 
 
 app = FastAPI()
@@ -11,8 +12,14 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
-    print('Request for index page received - risbosama')
+    print('Request for index page received')
     return templates.TemplateResponse('index.html', {"request": request})
+
+@app.get("/api/validateinput")
+async def read_validateinput(msisdn: str = Query(...)):
+    pattern = r'^(65|66|67|68|69)\d{7}$'
+    result = bool(re.match(pattern, msisdn))
+    return result
 
 @app.get('/favicon.ico')
 async def favicon():
