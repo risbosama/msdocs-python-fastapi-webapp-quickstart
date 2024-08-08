@@ -94,7 +94,7 @@ def format_output(client):
         recommendations.append("<li><b>MyMTN APP : </>Highlight the ease of use, exclusive offers like 3G at 200U from 00 to 06am and 1Gb at the installation</li>")
     
     if not Y_profile:
-        base_response += "<b>INACTIVE<b/> on all tracked KPIs : HVC, Data, SME, MOMO, APPS (MOMO app & MyMTN). <br/><p/>"
+        base_response += "<b>INACTIVE</b> on all tracked KPIs : HVC, Data, SME, MOMO, APPS (MOMO app & MyMTN). <br/><p/>"
     else:
         for chaine in Y_profile:
             base_response += chaine
@@ -129,6 +129,8 @@ async def read_validateinput(msisdn: str = Query(...)):
 @app.get("/api/lookup")
 async def read_validateinput(msisdn: str = Query(...)):
     client = find_client(msisdn)
+    if client is None:
+        return "That MSISDN has not been found in our Database."
     return client
 
 @app.get('/favicon.ico')
