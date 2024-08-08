@@ -59,15 +59,15 @@ def format_output(client):
     base_response = ''
     Y_profile = []
     recommendations = []
-    base_response = base_response + "<h2>Profiling analysis</h2> for customer " + client.msisdn + ": <br />"
+    base_response = base_response + "<H2>Profiling analysis</H2> The customer " + client.msisdn + ":"
     # High value section
     if client.flag_hvc == 'Yes' :
-        Y_profile.append("is a high value customer<br />")
+        Y_profile.append("is a high value customer<br/>")
     else :
         recommendations.append("<li><b>HVC :</b>You may need to convince him to subscribe to PRESTIGE PACKAGE, *211#, or Home package starting at 14.9K monthly</li>")
     # SME section
     if client.flag_sme == 'Yes':
-        Y_profile.append("is identified as a B2B SME line<br />") 
+        Y_profile.append("is identified as a B2B SME line<br/>") 
         recommendations.append("<li><b>B2B SME : </b>You may need to propose him Smart Card offer, MTN Prime, Mobile Ads, or CUG for intra fleet calls at a lower rate</li>")
     # Data user section
     if client.data_user == 'Yes':
@@ -94,7 +94,7 @@ def format_output(client):
         recommendations.append("<li><b>MyMTN APP : </b>Highlight the ease of use, exclusive offers like 3G at 200U from 00 to 06am and 1Gb at the installation</li>")
     
     if not Y_profile:
-        base_response += "INACTIVE on all tracked KPIs : HVC, Data, SME, MOMO, APPS (MOMO app & MyMTN). <br/><p/>"
+        base_response += "INACTIVE on all tracked KPIs : HVC, Data, SME, MOMO, APPS (MOMO app & MyMTN). <br/>"
     else:
         for chaine in Y_profile:
             base_response += chaine
