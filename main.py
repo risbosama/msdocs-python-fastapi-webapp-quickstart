@@ -59,47 +59,55 @@ def format_output(client):
     base_response = ''
     Y_profile = []
     recommendations = []
-    base_response = base_response + "The customer " + client.msisdn + " has the following characteristics : \n"
+    base_response = base_response + "The customer " + client.msisdn + " has the following characteristics : <br />"
     # High value section
     if client.flag_hvc == 'Yes' :
-        Y_profile.append("is a high value customer; ")
+        Y_profile.append("is a high value customer<br />")
     else :
-        recommendations.append("You may need to convince him to subscribe to PRESTIGE PACKAGE, *211#, or Home package starting at 14.9K monthly; ")
+        recommendations.append("<li>You may need to convince him to subscribe to PRESTIGE PACKAGE, *211#, or Home package starting at 14.9K monthly</li>")
     # SME section
     if client.flag_sme == 'Yes':
-        Y_profile.append("is identified as a B2B SME line; ") 
-        recommendations.append("You may need to propose him Smart Card offer, MTN Prime, Mobile Ads, or CUG for intra fleet calls at a lower rate; ")
+        Y_profile.append("is identified as a B2B SME line<br />") 
+        recommendations.append("<li>You may need to propose him Smart Card offer, MTN Prime, Mobile Ads, or CUG for intra fleet calls at a lower rate</li>")
     # Data user section
     if client.data_user == 'Yes':
-        Y_profile.append("is an Active Data User; ")
+        Y_profile.append("is an Active Data User<br />")
     else :
-        recommendations.append("A recommentation is to identify customer needs, suggest Tailored Wanda Net or generic Mobile Surf. Highlight the Internet quality; ")
+        recommendations.append("<li>A recommentation is to identify customer needs, suggest Tailored Wanda Net or generic Mobile Surf. Highlight the Internet quality</li>")
     # Momo app section
     if client.momo_app_user == 'Yes':
-        Y_profile.append("is a MOMO App Active User; ")
+        Y_profile.append("is a MOMO App Active User<br />")
     else :
-        recommendations.append("Highlight the security and celerity of proceeding to momo operations via the app. The customer will benefit from 1G after downloading it for the first time; ")
+        recommendations.append("<li>Highlight the security and celerity of proceeding to momo operations via the app. The customer will benefit from 1G after downloading it for the first time</li>")
     # Merchant section
     if client.flag_merchant == 'Yes':
-        Y_profile.append("is a merchant; ")
-        recommendations.append("Try gather any issues he might have as part of his/her activity; ")
+        Y_profile.append("is a merchant<br />")
+        recommendations.append("<li>Try gather any issues he might have as part of his/her activity</li>")
     # Momo dormancy section
     if client.momo_dormancy == 'Yes':
-        Y_profile.append("is a MOMO dormant User; ")
-        recommendations.append("Highlight the benefits of financial inclusion, ease of use for payments, possibility of lending; ")
+        Y_profile.append("is a MOMO dormant User<br />")
+        recommendations.append("<li>Highlight the benefits of financial inclusion, ease of use for payments, possibility of lending</li>")
     # MyMTN section
     if client.mymtn_usage == 'Yes':
-        Y_profile.append("is an MyMTN App Active User; ")
+        Y_profile.append("is an MyMTN App Active User<br />")
     else :
-        recommendations.append("Highlight the ease of use, exclusive offers like 3G at 200U from 00 to 06am and 1Gb at the installation; ")
+        recommendations.append("<li>Highlight the ease of use, exclusive offers like 3G at 200U from 00 to 06am and 1Gb at the installation</li>")
     
-    for chaine in Y_profile:
-        base_response += chaine
+    if not Y_profile:
+        base_response += "* Inactive on all tracked KPIs : HVC, Data, SME, MOMO, APPS (MOMO app & MyMTN). <br/><p/>"
+    else:
+        for chaine in Y_profile:
+            base_response += chaine
 
-    base_response += " ----- "
+    base_response += "<H2>Next best recommendations</H2>"
 
-    for chaine in recommendations:
-        base_response += chaine
+    if not recommendations:
+        base_response += "* No further recommendations. KPIs ontrack <br/><p/>"
+    else:
+        base_response += "<ul>"
+        for chaine in recommendations:
+            base_response += chaine
+        base_response += "</ul>"
     
     return base_response
 
