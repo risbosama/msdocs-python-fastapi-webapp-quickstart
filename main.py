@@ -130,7 +130,7 @@ async def read_validateinput(msisdn: str = Query(...)):
 async def read_validateinput(msisdn: str = Query(...)):
     client = find_client(msisdn)
     if client is None:
-        return "null"
+        return ""
     return client
 
 @app.get('/favicon.ico')
