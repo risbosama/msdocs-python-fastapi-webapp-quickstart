@@ -59,7 +59,7 @@ def format_output(client):
     base_response = ''
     Y_profile = []
     recommendations = []
-    base_response = base_response + "<H2>Profiling analysis</H2> The customer " + client.msisdn + ":"
+    base_response = base_response + "Profiling analysis : The customer " + client.msisdn + ":"
     # High value section
     if client.flag_hvc == 'Yes' :
         Y_profile.append("is a high value customer<br/>")
