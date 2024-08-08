@@ -59,7 +59,7 @@ def format_output(client):
     base_response = ''
     Y_profile = []
     recommendations = []
-    base_response = base_response + "The customer " + client.msisdn + " has the following characteristics : "
+    base_response = base_response + "The customer " + client.msisdn + " has the following characteristics : \n"
     # High value section
     if client.flag_hvc == 'Yes' :
         Y_profile.append("is a high value customer; ")
