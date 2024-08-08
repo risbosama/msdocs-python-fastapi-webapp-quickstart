@@ -59,7 +59,7 @@ def format_output(client):
     base_response = ''
     Y_profile = []
     recommendations = []
-    base_response = base_response + "<h2>The customer " + client.msisdn + " has the following characteristics : </h2><br />"
+    base_response = base_response + "<h2>Profiling analysis for customer " + client.msisdn + ": </h2><br />"
     # High value section
     if client.flag_hvc == 'Yes' :
         Y_profile.append("is a high value customer<br />")
@@ -91,7 +91,7 @@ def format_output(client):
     if client.mymtn_usage == 'Yes':
         Y_profile.append("is an MyMTN App Active User<br />")
     else :
-        recommendations.append("<li><b>MyMTN APP : </>Highlight the ease of use, exclusive offers like 3G at 200U from 00 to 06am and 1Gb at the installation</li>")
+        recommendations.append("<li><b>MyMTN APP : </b>Highlight the ease of use, exclusive offers like 3G at 200U from 00 to 06am and 1Gb at the installation</li>")
     
     if not Y_profile:
         base_response += "<b>INACTIVE</b> on all tracked KPIs : HVC, Data, SME, MOMO, APPS (MOMO app & MyMTN). <br/><p/>"
